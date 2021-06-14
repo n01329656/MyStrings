@@ -30,6 +30,18 @@ int main()
     std::cout << std::endl;
     // result[result.size()]; throws an exception 
   
+
+
+    mystring s;
+    mystring s2(s);
+    s = "test";
+    s2 = std::move(s);
+    std::cout << s<<s.size()<< "  " << s2<<s2.size();
+
+
+
+
+
     return 0;
 
 }

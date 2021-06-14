@@ -21,14 +21,15 @@ Mstring::mystring::mystring(const Mstring::mystring& rhs) {
 
 
 Mstring::mystring::~mystring() {
-    delete[] str;
+    if (str != nullptr) {
+        delete[] str;
+    }
     length=0;
 }
 
 
 
 Mstring::mystring& Mstring::mystring::operator=(const mystring& rhs) {
-
     if (this == &rhs)return *this;
     length = rhs.length;
     delete[] str;
@@ -61,4 +62,17 @@ Mstring::mystring Mstring::operator+(const mystring& lhs, const mystring& rhs){
     return  temp;
 }
 
- 
+
+
+Mstring::mystring::mystring(mystring&& rhs) noexcept{
+    *this = std::move(rhs);
+}
+
+Mstring::mystring& Mstring::mystring::operator=(mystring&& rhs) noexcept {
+    this->length = rhs.length;
+    this->str = rhs.str;
+    rhs.length = 0;
+    rhs.str = nullptr;
+    return *this;
+}
+

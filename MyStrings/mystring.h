@@ -21,6 +21,7 @@ namespace Mstring {
         inline  char*  end()const { return str + length - 1; }
         friend mystring operator+(const mystring& lhs, const mystring& rhs);
         friend std::ostream& operator<<(std::ostream& out, const mystring& rhs) {
+            if (rhs.str == nullptr) return out;
             out << rhs.str;
             return out;
         }
@@ -30,6 +31,10 @@ namespace Mstring {
             rhs = buf;
             return in;
         }
+        mystring(mystring&& rhs) noexcept;
+        mystring& operator=(mystring&& rhs)noexcept;
+
+
 
     private:
         char* str;
@@ -37,6 +42,10 @@ namespace Mstring {
     };
 
 }
+
+
+
+
 #endif // !MYSTRING
 
 
