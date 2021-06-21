@@ -33,12 +33,9 @@ namespace Mstring {
         }
         mystring(mystring&& rhs) noexcept;
         mystring& operator=(mystring&& rhs)noexcept;
-
-
-
     private:
-        char* str;
-        int length;
+        char* str{0};
+        int length{0};
     };
 
 }

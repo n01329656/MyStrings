@@ -14,9 +14,9 @@ Mstring::mystring::mystring(const char* msg) {
 }
 
 Mstring::mystring::mystring(const Mstring::mystring& rhs) {
-    this->length = rhs.length;
-    this->str = new char[this->length];
-    strcpy_s(this->str,this->length,rhs.str);
+    length = rhs.length;
+    str = new char[length];
+    strcpy_s(str,length,rhs.str);
 }
 
 
@@ -69,6 +69,7 @@ Mstring::mystring::mystring(mystring&& rhs) noexcept{
 }
 
 Mstring::mystring& Mstring::mystring::operator=(mystring&& rhs) noexcept {
+    if (str != nullptr) delete[] str;
     this->length = rhs.length;
     this->str = rhs.str;
     rhs.length = 0;
