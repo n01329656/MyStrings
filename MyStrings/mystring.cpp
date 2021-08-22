@@ -69,6 +69,7 @@ Mstring::mystring::mystring(mystring&& rhs) noexcept{
 }
 
 Mstring::mystring& Mstring::mystring::operator=(mystring&& rhs) noexcept {
+    if (this == &rhs) return *this;
     if (str != nullptr) delete[] str;
     this->length = rhs.length;
     this->str = rhs.str;
